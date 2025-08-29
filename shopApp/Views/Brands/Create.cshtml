@@ -1,0 +1,18 @@
+@model Brand
+
+@{
+    ViewBag.Title = "Создать новый бренд";
+}
+
+<h2>Создать новый бренд</h2>
+
+<form asp-action="Create" method="post" class="col-6">
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Название</label>
+        <input asp-for="Name" type="name" class="form-control" id="Название" placeholder="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Создать</button>
+
+</form>
