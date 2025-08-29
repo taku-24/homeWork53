@@ -1,0 +1,50 @@
+@model shopApp.Models.Product
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Редактировать товар";
+}
+
+<h2>Редактировать товар</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data" class="mt-2">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name">Название</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price">Цена</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryId">Категория</label>
+        <select asp-for="CategoryId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+            <option value="">-- выберите категорию --</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="BrandId">Бренд</label>
+        <select asp-for="BrandId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Brands, "Id", "Name"))">
+            <option value="">-- выберите бренд --</option>
+        </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl">Ссылка на url</label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+</form>
