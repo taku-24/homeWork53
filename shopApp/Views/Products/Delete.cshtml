@@ -1,0 +1,15 @@
+@model Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="col-6 text-center">
+    <h3>Удалить товар: @Model.Name</h3>
+    <p>Вы уверены?</p>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" value="@Model.Id" name="id"/>
+        <button type="submit" class="btn btn-success">Да</button>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='@Url.Action("Index")'">Нет</button>
+    </form>
+</div>
