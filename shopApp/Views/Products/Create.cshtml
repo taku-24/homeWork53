@@ -1,0 +1,80 @@
+@model Product
+
+@{
+    Layout = "_Layout";
+}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#CategoryId').select2();
+        $('#BrandId').select2();
+    });
+</script>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@{
+    ViewData["Title"] = "Все товары";
+}
+
+<h2>Заполните форму для добавления товара</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div class="form_row">
+                <label for="">
+
+                    Название
+
+                    <input asp-for="Name" type="text" class="form-control">
+
+                </label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form_row">
+                <label for="">
+                    Стоимость
+                    <input asp-for="Price" type="number" class="form-control">
+                </label>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CategoryId">Категория</label>
+                <select asp-for="CategoryId" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+                    <option value="">-- выберите категорию --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="BrandId">Бренд</label>
+                <select asp-for="BrandId" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Brands, "Id", "Name"))">
+                    <option value="">-- выберите бренд --</option>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            <div class="form_row">
+                <label for="">
+                    Ссылка на url
+                    <input asp-for="ImageUrl" type="text" class="form-control">
+                </label>
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            
+
+            <button type="submit" class="btn btn-success mt-2">Создать</button>
+
+        </form>
+
+    </div>
+
+</div>
