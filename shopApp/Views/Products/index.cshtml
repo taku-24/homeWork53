@@ -1,0 +1,49 @@
+@model shopApp.Models.ProductOrderViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Все продукты";
+}
+
+<h2>Товары</h2>
+
+<div class="container mt-4">
+    @if (Model.Products.Count == 0)
+    {
+        <p>Товары еще не добавлены</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <a asp-action="Details" asp-route-id="@product.Id">
+                            <img src="@product.ImageUrl"
+                             class="card-img-top product-img"
+                             alt="@product.Name">
+                        </a>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">Цена: @product.Price сом</p>
+                            <p class="text-muted">Категория: @product.Category?.Name</p>
+                            <p class="text-muted">Бренд: @product.Brand?.Name</p>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-controller="Orders"
+                                   asp-action="Create"
+                                   asp-route-productId="@product.Id"
+                                   class="btn btn-success flex-fill">
+                                    Заказать
+                                </a>
+                                <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary flex-fill">Детали</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
