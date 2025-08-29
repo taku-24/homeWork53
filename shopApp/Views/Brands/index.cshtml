@@ -1,0 +1,45 @@
+@model List<Brand>
+
+@{
+    ViewData["Title"] = "All Brand";
+}
+
+<h2>Бренд</h2>
+<a asp-action="Create" asp-controller="Brands" class="btn btn-success">Добавить бренд</a>
+
+
+
+<div class="table_section">
+
+    @if (@Model.Count == 0)
+    {
+        <p>Бренды еще не добавлены</p>
+    }
+    else
+    {
+        <table style="width: 100%; font-size: 25px">
+            <tr>
+                <th>Id</th>
+
+                <th>Наименование</th>
+
+            </tr>
+            @foreach (var brand in @Model)
+            {
+                <tr>
+
+                    <td>@brand.Id</td>
+
+                    <td>@brand.Name</td>
+
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@brand.Id">
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    }
+</div>
