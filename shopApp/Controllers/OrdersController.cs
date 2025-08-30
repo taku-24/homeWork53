@@ -13,7 +13,7 @@ namespace shopApp.Controllers
             _context = context;
         }
 
-        // список заказов
+    
         public IActionResult Index()
         {
             var orders = _context.Orders
@@ -22,7 +22,7 @@ namespace shopApp.Controllers
             return View(orders);
         }
 
-        // при нажатии "Заказать"
+    
         public IActionResult Create(int productId)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == productId);
@@ -40,7 +40,7 @@ namespace shopApp.Controllers
             return RedirectToAction("Index");
         }
 
-        // удаление заказа
+    
         public IActionResult Delete(int id)
         {
             var order = _context.Orders.FirstOrDefault(o => o.Id == id);
